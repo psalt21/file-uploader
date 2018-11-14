@@ -1,0 +1,21 @@
+{
+  "name": "example-create-react-app-express",
+  "version": "1.0.0",
+  "scripts": {
+    "client": "cd client && yarn start",
+    "server": "nodemon server.js",
+    "dev": "concurrently --kill-others-on-fail \"yarn server\" \"yarn client\""
+  },
+  "dependencies": {
+    "aws-sdk": "^2.355.0",
+    "bluebird": "^3.5.3",
+    "body-parser": "^1.18.3",
+    "express": "^4.16.4",
+    "file-type": "^10.4.0",
+    "fs": "0.0.1-security",
+    "multiparty": "^4.2.1"
+  },
+  "devDependencies": {
+    "concurrently": "^4.0.1"
+  }
+}
