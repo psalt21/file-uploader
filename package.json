@@ -1,21 +1,32 @@
 {
-  "name": "example-create-react-app-express",
-  "version": "1.0.0",
-  "scripts": {
-    "client": "cd client && yarn start",
-    "server": "nodemon server.js",
-    "dev": "concurrently --kill-others-on-fail \"yarn server\" \"yarn client\""
-  },
+  "name": "my-app",
+  "version": "0.1.0",
+  "private": true,
   "dependencies": {
-    "aws-sdk": "^2.355.0",
-    "bluebird": "^3.5.3",
-    "body-parser": "^1.18.3",
-    "express": "^4.16.4",
-    "file-type": "^10.4.0",
-    "fs": "0.0.1-security",
-    "multiparty": "^4.2.1"
+    "axios": "^0.18.0",
+    "firebase": "^5.5.8",
+    "lodash": "^4.17.11",
+    "react": "^16.6.3",
+    "react-dom": "^16.6.3",
+    "react-router-dom": "^4.3.1",
+    "react-s3": "^1.3.1",
+    "react-scripts": "2.1.1",
+    "s3-ls": "^2.0.1",
+    "styled-components": "^4.1.1"
   },
-  "devDependencies": {
-    "concurrently": "^4.0.1"
-  }
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject"
+  },
+  "eslintConfig": {
+    "extends": "react-app"
+  },
+  "browserslist": [
+    ">0.2%",
+    "not dead",
+    "not ie <= 11",
+    "not op_mini all"
+  ]
 }

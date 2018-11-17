@@ -1,13 +1,6 @@
 import React, { Component } from 'react';
 
-import FileUPload from './file-upload';
-// import styled from 'styled-components';
-
-// const Container = styled.div`
-//     font-size: 14px;
-//     margin-bottom: 8px;
-// margin-top: 16px;
-// `;
+import Uploader from './uploader';
 
 class UploadScreen extends Component {
     constructor(props) {
@@ -22,7 +15,7 @@ class UploadScreen extends Component {
     render() {
         return (
             // <Container>{this.props.content}</Container>
-            <FileUPload />
+            <Uploader />
         )
     }
 }
