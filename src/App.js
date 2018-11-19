@@ -23,6 +23,7 @@ const MenuContainer = styled.div`
   margin-left: -10px;
   list-style-type: none;
   font-size: 18px;
+  width: 180px;
 `;
 
 class App extends Component {

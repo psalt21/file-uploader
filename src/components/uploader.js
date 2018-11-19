@@ -2,6 +2,11 @@ import React, { Component } from 'react';
 import { storage, firestore } from '../firebase';
 import styled from 'styled-components';
 
+const PageHeader = styled.h1`
+    margin-bottom: -25px;
+    padding-left: 40px;
+`;
+
 const Container = styled.div`
     display: flex;
     flex-direction: row;
@@ -129,26 +134,29 @@ class Uploader extends Component {
 
     render() {
         return (
-            <Container>
-                <ImageUploadContainer>
-                    <UploadTypeHeader>Upload JPG Image:</UploadTypeHeader>
-                    <img src={this.state.imageUrl || 'http://via.placeholder.com/400x224'} alt="Uploaded Files" width="400" />
-                    <ProgressBar value={this.state.imageProgress} max="100" />
-                    <ButtonsContainer>
-                        <input type="file" accept=".jpg, .JPG, .jpeg" onChange={this.handleImageChange} />
-                        <button onClick={this.handleImageUpload}>Upload</button>
-                    </ButtonsContainer>
-                </ImageUploadContainer>
-                <VideoUploadContainer>
-                    <UploadTypeHeader>Upload MP4 Video:</UploadTypeHeader>
-                    <img src={this.state.videoThumbnailUrl} alt="Uploaded Files" width="400" />
-                    <ProgressBar value={this.state.videoProgress} max="100" />
-                    <ButtonsContainer>
-                        <input type="file" accept=".mp4" onChange={this.handleVideoChange} />
-                        <button onClick={this.handleVideoUpload}>Upload</button>
-                    </ButtonsContainer>
-                </VideoUploadContainer>
-            </Container>
+            <div>
+                <PageHeader>Upload</PageHeader>
+                <Container>
+                    <ImageUploadContainer>
+                        <UploadTypeHeader>Upload JPG Image:</UploadTypeHeader>
+                        <img src={this.state.imageUrl || 'http://via.placeholder.com/400x224'} alt="Uploaded Files" width="400" />
+                        <ProgressBar value={this.state.imageProgress} max="100" />
+                        <ButtonsContainer>
+                            <input type="file" accept=".jpg, .JPG, .jpeg" onChange={this.handleImageChange} />
+                            <button onClick={this.handleImageUpload}>Upload</button>
+                        </ButtonsContainer>
+                    </ImageUploadContainer>
+                    <VideoUploadContainer>
+                        <UploadTypeHeader>Upload MP4 Video:</UploadTypeHeader>
+                        <img src={this.state.videoThumbnailUrl} alt="Uploaded Files" width="400" />
+                        <ProgressBar value={this.state.videoProgress} max="100" />
+                        <ButtonsContainer>
+                            <input type="file" accept=".mp4" onChange={this.handleVideoChange} />
+                            <button onClick={this.handleVideoUpload}>Upload</button>
+                        </ButtonsContainer>
+                    </VideoUploadContainer>
+                </Container>
+            </div>
         )
     }
 }

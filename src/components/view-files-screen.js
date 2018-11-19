@@ -5,6 +5,10 @@ import _ from 'lodash';
 import ModalImage from 'react-modal-image';
 import ReactPlayer from 'react-player';
 
+const PageHeader = styled.h1`
+    padding-left: 40px;
+`;
+
 const Container = styled.div`
     margin-bottom: 40px;
 `;
@@ -153,23 +157,26 @@ class ViewFilesScreen extends Component {
     
     render() {
         return (
-            <Container>
-                <TopMessage>Select "View Files" from the left hand menu to load images and video files</TopMessage>
-                <hr style={{marginLeft: '40px', marginRight: '40px', opacity: '0.2'}} />
-                <ImagesContainer>
-                    <UploadTypeHeader>JPG Images</UploadTypeHeader>
-                    <ThumbNailsContainer>
-                        {this.renderImageThumbnails()}
-                    </ThumbNailsContainer>
-                </ImagesContainer>
-                <hr style={{marginLeft: '40px', marginRight: '40px', opacity: '0.2'}} />
-                <VideosContainer>
-                    <UploadTypeHeader>MP4 Videos</UploadTypeHeader>
-                    <ThumbNailsContainer>
-                        {this.renderVideoThumbnails()}
-                    </ThumbNailsContainer>
-                </VideosContainer>
-            </Container>
+            <div>
+                <PageHeader>View Files</PageHeader>
+                <Container>
+                    <TopMessage>Select "View Files" again from the left hand menu to load images and video files</TopMessage>
+                    <hr style={{marginLeft: '40px', marginRight: '40px', opacity: '0.2'}} />
+                    <ImagesContainer>
+                        <UploadTypeHeader>JPG Images</UploadTypeHeader>
+                        <ThumbNailsContainer>
+                            {this.renderImageThumbnails()}
+                        </ThumbNailsContainer>
+                    </ImagesContainer>
+                    <hr style={{marginLeft: '40px', marginRight: '40px', opacity: '0.2'}} />
+                    <VideosContainer>
+                        <UploadTypeHeader>MP4 Videos</UploadTypeHeader>
+                        <ThumbNailsContainer>
+                            {this.renderVideoThumbnails()}
+                        </ThumbNailsContainer>
+                    </VideosContainer>
+                </Container>
+            </div>
         )
     }
 }
