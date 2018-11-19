@@ -3,6 +3,10 @@ import { firestore } from '../firebase';
 import styled from 'styled-components';
 import _ from 'lodash';
 
+const Container = styled.div`
+    margin-bottom: 40px;
+`;
+
 const ThumbNailsContainer = styled.div`
     display: flex;
     flex-direction: row;
@@ -11,11 +15,12 @@ const ThumbNailsContainer = styled.div`
 `;
 
 const ThumbNailContainer = styled.div`
-    padding: 0 18px;
+    padding: 0 32px;
+    width: 100px;
 `;
 
 const ImagesContainer = styled.div`
-
+    
 `;
 
 const VideosContainer = styled.div`
@@ -105,7 +110,7 @@ class ViewFilesScreen extends Component {
                     <ImageContainer>
                         <img src={item.url || 'http://via.placeholder.com/40x30'} alt="thumbnail" height="100" />
                     </ImageContainer>
-                    <p style={{fontSize: "12px"}}>{item.imageName}</p>
+                    <p style={{fontSize: "10px"}}>{item.imageName}</p>
                 </ThumbNailContainer>
             )
         })
@@ -122,7 +127,7 @@ class ViewFilesScreen extends Component {
                     <ImageContainer>
                         <img src={'https://alamotitlesa.com/wp-content/uploads/2015/03/Video-Placeholder-Image.jpg'} alt="thumbnail" height="100" />
                     </ImageContainer>
-                    <p style={{fontSize: "12px"}}>{item.videoName}</p>
+                    <p style={{fontSize: "10px"}}>{item.videoName}</p>
                 </ThumbNailContainer>
             )
         })
@@ -133,7 +138,7 @@ class ViewFilesScreen extends Component {
     
     render() {
         return (
-            <div>
+            <Container>
                 <TopMessage>Select "View Files" from the left hand menu to load images and video files</TopMessage>
                 <ImagesContainer>
                     <UploadTypeHeader>JPG Images</UploadTypeHeader>
@@ -147,7 +152,7 @@ class ViewFilesScreen extends Component {
                         {this.renderVideoThumbnails()}
                     </ThumbNailsContainer>
                 </VideosContainer>
-            </div>
+            </Container>
         )
     }
 }
