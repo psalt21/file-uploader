@@ -1,11 +1,13 @@
 import React, { Component } from 'react';
-// import styled from 'styled-components';
+import styled from 'styled-components';
+import { Link } from 'react-router-dom';
 
-// const Container = styled.div`
-//     font-size: 14px;
-//     margin-bottom: 8px;
-// margin-top: 16px;
-// `;
+const Container = styled.div`
+    font-size: 14px;
+    margin-bottom: 8px;
+    margin-top: 16px;
+    margin: 8px 0 0 40px;
+`;
 
 class HomeScreen extends Component {
     constructor(props) {
@@ -20,7 +22,11 @@ class HomeScreen extends Component {
     render() {
         return (
             // <Container>{this.props.content}</Container>
-            <div style={{width: "280px", height: "200px", background: "red"}}>home screen goes here</div>
+            <Container>
+                <h1>File Uploader</h1>
+                <p>Welcome to File Uploader! A place to upload and view images and videos.</p>
+                <p>click <Link to="/upload">HERE</Link> to start uploading now</p>
+            </Container>
         )
     }
 }
