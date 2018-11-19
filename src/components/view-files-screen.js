@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { firestore } from '../firebase';
 import styled from 'styled-components';
 import _ from 'lodash';
+import ModalImage from 'react-modal-image';
 
 const Container = styled.div`
     margin-bottom: 40px;
@@ -14,9 +15,14 @@ const ThumbNailsContainer = styled.div`
     padding: 40px 0 0 40px;
 `;
 
-const ThumbNailContainer = styled.div`
-    padding: 0 32px;
+const ImageThumbNailContainer = styled.div`
+    padding-right: 32px;
     width: 100px;
+`;
+
+const VideoThumbNailContainer = styled.div`
+    padding-right: 32px;
+    width: 150px;
 `;
 
 const ImagesContainer = styled.div`
@@ -35,6 +41,11 @@ const UploadTypeHeader = styled.h2`
 
 const ImageContainer = styled.div`
     text-align: center;
+`;
+
+const VideoContainer = styled.div`
+    padding-right: 35px;
+    width: 150px;
 `;
 
 const TopMessage = styled.h1`
@@ -106,12 +117,16 @@ class ViewFilesScreen extends Component {
         const uniqueImages = _.uniq(this.state.imagesInfo);
         let images = uniqueImages.map( item => {
             return (
-                <ThumbNailContainer key={item.url}>
+                <ImageThumbNailContainer key={item.url}>
                     <ImageContainer>
-                        <img src={item.url || 'http://via.placeholder.com/40x30'} alt="thumbnail" height="100" />
+                        <ModalImage
+                            small={item.url}
+                            large={item.url}
+                            alt={item.imageName}
+                        />
                     </ImageContainer>
                     <p style={{fontSize: "10px"}}>{item.imageName}</p>
-                </ThumbNailContainer>
+                </ImageThumbNailContainer>
             )
         })
         return (
@@ -123,12 +138,12 @@ class ViewFilesScreen extends Component {
         const uniqueVideos = _.uniq(this.state.videosInfo);
         let videos = uniqueVideos.map( item => {
             return (
-                <ThumbNailContainer key={item.url}>
-                    <ImageContainer>
+                <VideoThumbNailContainer key={item.url}>
+                    <VideoContainer>
                         <img src={'https://alamotitlesa.com/wp-content/uploads/2015/03/Video-Placeholder-Image.jpg'} alt="thumbnail" height="100" />
-                    </ImageContainer>
+                    </VideoContainer>
                     <p style={{fontSize: "10px"}}>{item.videoName}</p>
-                </ThumbNailContainer>
+                </VideoThumbNailContainer>
             )
         })
         return (
@@ -140,12 +155,14 @@ class ViewFilesScreen extends Component {
         return (
             <Container>
                 <TopMessage>Select "View Files" from the left hand menu to load images and video files</TopMessage>
+                <hr style={{marginLeft: '40px', marginRight: '40px', opacity: '0.2'}} />
                 <ImagesContainer>
                     <UploadTypeHeader>JPG Images</UploadTypeHeader>
                     <ThumbNailsContainer>
                         {this.renderImageThumbnails()}
                     </ThumbNailsContainer>
                 </ImagesContainer>
+                <hr style={{marginLeft: '40px', marginRight: '40px', opacity: '0.2'}} />
                 <VideosContainer>
                     <UploadTypeHeader>MP4 Videos</UploadTypeHeader>
                     <ThumbNailsContainer>
