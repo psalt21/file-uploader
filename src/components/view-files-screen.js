@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
 import { firestore } from '../firebase';
 import styled from 'styled-components';
+import _ from 'lodash';
 
-const ImageThumbNailsContainer = styled.div`
+const ThumbNailsContainer = styled.div`
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
@@ -10,11 +11,25 @@ const ImageThumbNailsContainer = styled.div`
 `;
 
 const ThumbNailContainer = styled.div`
-    padding: 0 12px;
+    padding: 0 18px;
+`;
+
+const ImagesContainer = styled.div`
+
+`;
+
+const VideosContainer = styled.div`
+
+`;
+
+const UploadTypeHeader = styled.h2`
+    font-weight: lighter;
+    padding-left: 40px;
+    margin-bottom: -15px;
 `;
 
 const ImageContainer = styled.div`
-    
+    text-align: center;
 `;
 
 const TopMessage = styled.h1`
@@ -29,23 +44,24 @@ class ViewFilesScreen extends Component {
       super(props);
   
       this.state = {
-        itemsInfo: [],
-        words: ['word', 'word2', 'word3']
+        imagesInfo: [],
+        videosInfo: []
       };
     }
 
     componentDidMount = () => {
-        this.getDocuments();
+        this.getImages();
+        this.getVideos();
     }
 
-    getDocuments = () => {
+    getImages = () => {
         const db = firestore;
         db.settings({
             timestampsInSnapshots: true
         });
 
         let itemsList = []
-        var itemsRef = db.collection('files')
+        var itemsRef = db.collection('images')
         itemsRef.get()
             .then(snapshot => {
                 snapshot.forEach(doc => {
@@ -56,17 +72,40 @@ class ViewFilesScreen extends Component {
                 console.log('Error getting documents', err);
             });
             
-        this.setState({itemsInfo: itemsList});
+        this.setState({imagesInfo: itemsList});
     };
 
-    renderImages = () => {
-        let images = this.state.itemsInfo.map( item => {
+    getVideos = () => {
+        const db = firestore;
+        db.settings({
+            timestampsInSnapshots: true
+        });
+
+        let itemsList = []
+        var itemsRef = db.collection('videos')
+        itemsRef.get()
+            .then(snapshot => {
+                snapshot.forEach(doc => {
+
+                    itemsList.push(doc.data())
+                });
+            })
+            .catch(err => {
+                console.log('Error getting documents', err);
+            });
+            
+        this.setState({videosInfo: itemsList});
+    }
+
+    renderImageThumbnails = () => {
+        const uniqueImages = _.uniq(this.state.imagesInfo);
+        let images = uniqueImages.map( item => {
             return (
                 <ThumbNailContainer key={item.url}>
                     <ImageContainer>
-                        <img src={item.url || 'http://via.placeholder.com/40x30'} alt="thumbnail" height="65" />
+                        <img src={item.url || 'http://via.placeholder.com/40x30'} alt="thumbnail" height="100" />
                     </ImageContainer>
-                    <p>{item.imageName}</p>
+                    <p style={{fontSize: "12px"}}>{item.imageName}</p>
                 </ThumbNailContainer>
             )
         })
@@ -74,14 +113,40 @@ class ViewFilesScreen extends Component {
             images
         )
     };
+
+    renderVideoThumbnails = () => {
+        const uniqueVideos = _.uniq(this.state.videosInfo);
+        let videos = uniqueVideos.map( item => {
+            return (
+                <ThumbNailContainer key={item.url}>
+                    <ImageContainer>
+                        <img src={'https://alamotitlesa.com/wp-content/uploads/2015/03/Video-Placeholder-Image.jpg'} alt="thumbnail" height="100" />
+                    </ImageContainer>
+                    <p style={{fontSize: "12px"}}>{item.videoName}</p>
+                </ThumbNailContainer>
+            )
+        })
+        return (
+            videos
+        )
+    };
     
     render() {
         return (
             <div>
                 <TopMessage>Select "View Files" from the left hand menu to load images and video files</TopMessage>
-                <ImageThumbNailsContainer>
-                    {this.renderImages()}
-                </ImageThumbNailsContainer>
+                <ImagesContainer>
+                    <UploadTypeHeader>JPG Images</UploadTypeHeader>
+                    <ThumbNailsContainer>
+                        {this.renderImageThumbnails()}
+                    </ThumbNailsContainer>
+                </ImagesContainer>
+                <VideosContainer>
+                    <UploadTypeHeader>MP4 Videos</UploadTypeHeader>
+                    <ThumbNailsContainer>
+                        {this.renderVideoThumbnails()}
+                    </ThumbNailsContainer>
+                </VideosContainer>
             </div>
         )
     }
