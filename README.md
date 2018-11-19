@@ -25,6 +25,7 @@ npm start
 ### Using App
 
 Use navigation on left hand side of screen
+
 Upload either JPG or MP4 files from "Upload page"
 View files from the "View Files" page. If files don't load the first time select "View Files" again and they will load up.
 
