@@ -14,7 +14,9 @@ Node (Ideally v8.12.0)
 To get the app up and running:
 
 cd file-uploader
+```
 npm install
+```
 npm start
 
 ### Using App
