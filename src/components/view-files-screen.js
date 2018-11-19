@@ -3,6 +3,7 @@ import { firestore } from '../firebase';
 import styled from 'styled-components';
 import _ from 'lodash';
 import ModalImage from 'react-modal-image';
+import ReactPlayer from 'react-player';
 
 const Container = styled.div`
     margin-bottom: 40px;
@@ -22,7 +23,7 @@ const ImageThumbNailContainer = styled.div`
 
 const VideoThumbNailContainer = styled.div`
     padding-right: 32px;
-    width: 150px;
+    width: auto;
 `;
 
 const ImagesContainer = styled.div`
@@ -30,7 +31,7 @@ const ImagesContainer = styled.div`
 `;
 
 const VideosContainer = styled.div`
-
+    
 `;
 
 const UploadTypeHeader = styled.h2`
@@ -41,11 +42,6 @@ const UploadTypeHeader = styled.h2`
 
 const ImageContainer = styled.div`
     text-align: center;
-`;
-
-const VideoContainer = styled.div`
-    padding-right: 35px;
-    width: 150px;
 `;
 
 const TopMessage = styled.h1`
@@ -139,9 +135,13 @@ class ViewFilesScreen extends Component {
         let videos = uniqueVideos.map( item => {
             return (
                 <VideoThumbNailContainer key={item.url}>
-                    <VideoContainer>
-                        <img src={'https://alamotitlesa.com/wp-content/uploads/2015/03/Video-Placeholder-Image.jpg'} alt="thumbnail" height="100" />
-                    </VideoContainer>
+                    
+                    <ReactPlayer 
+                        url={item.url}
+                        controls
+                        width='250px'
+                        height='180px'
+                    />
                     <p style={{fontSize: "10px"}}>{item.videoName}</p>
                 </VideoThumbNailContainer>
             )

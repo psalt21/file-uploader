@@ -19,6 +19,7 @@ const MenuContainer = styled.div`
   height: 100%;
   background-color: #f1f1f1;
   padding-right: 40px;
+  padding-bottom: 40px;
   margin-left: -10px;
   list-style-type: none;
   font-size: 18px;
