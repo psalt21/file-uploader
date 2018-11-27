@@ -48,7 +48,9 @@ class Uploader extends Component {
             videoUrl: '',
             videoThumbnailUrl: 'https://argoswimvideo.com/wp-content/uploads/2017/11/video-placeholder-1280x720-40.jpg',
             imageProgress: 0,
-            videoProgress: 0
+            videoProgress: 0,
+            imageUploadDisabled: true,
+            videoUploadDisabled: true
         }
         this.handleImageChange = this.handleImageChange.bind(this);
         this.handleImageUpload = this.handleImageUpload.bind(this);
@@ -60,6 +62,7 @@ class Uploader extends Component {
         if (event.target.files[0]) {
             const image = event.target.files[0];
             this.setState(() => ({image}));
+            this.setState({imageUploadDisabled: false})
         }
     }
 
@@ -67,6 +70,7 @@ class Uploader extends Component {
         if (event.target.files[0]) {
             const video = event.target.files[0];
             this.setState(() => ({video}));
+            this.setState({videoUploadDisabled: false})
         }
     }
 
@@ -91,7 +95,7 @@ class Uploader extends Component {
         () => {
             //complete function
             storage.ref('images').child(image.name).getDownloadURL().then(url => {
-                this.setState({imageUrl: url});
+                this.setState({imageUrl: url, imageUploadDisabled: true});
                 db.collection("images").add({
                     imageName: this.state.image.name,
                     url: url
@@ -122,7 +126,7 @@ class Uploader extends Component {
         () => {
             //complete function
             storage.ref('videos').child(video.name).getDownloadURL().then(url => {
-                this.setState({videoUrl: url, videoThumbnailUrl: 'https://alamotitlesa.com/wp-content/uploads/2015/03/Video-Placeholder-Image.jpg'});
+                this.setState({videoUrl: url, videoThumbnailUrl: 'https://alamotitlesa.com/wp-content/uploads/2015/03/Video-Placeholder-Image.jpg', videoUploadDisabled: true});
                 db.collection("videos").add({
                     videoName: this.state.video.name,
                     url: url
@@ -143,7 +147,7 @@ class Uploader extends Component {
                         <ProgressBar value={this.state.imageProgress} max="100" />
                         <ButtonsContainer>
                             <input type="file" accept=".jpg, .JPG, .jpeg" onChange={this.handleImageChange} />
-                            <button onClick={this.handleImageUpload}>Upload</button>
+                            <button onClick={this.handleImageUpload} disabled={this.state.imageUploadDisabled}>Upload</button>
                         </ButtonsContainer>
                     </ImageUploadContainer>
                     <VideoUploadContainer>
@@ -152,7 +156,7 @@ class Uploader extends Component {
                         <ProgressBar value={this.state.videoProgress} max="100" />
                         <ButtonsContainer>
                             <input type="file" accept=".mp4" onChange={this.handleVideoChange} />
-                            <button onClick={this.handleVideoUpload}>Upload</button>
+                            <button onClick={this.handleVideoUpload} disabled={this.state.videoUploadDisabled}>Upload</button>
                         </ButtonsContainer>
                     </VideoUploadContainer>
                 </Container>
