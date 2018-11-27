@@ -14,8 +14,6 @@ class HomeScreen extends Component {
       super(props);
   
       this.state = {
-        loading: true,
-        pages: []
       };
     }   
 

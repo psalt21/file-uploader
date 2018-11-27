@@ -52,25 +52,20 @@ class Uploader extends Component {
             imageUploadDisabled: true,
             videoUploadDisabled: true
         }
-        this.handleImageChange = this.handleImageChange.bind(this);
-        this.handleImageUpload = this.handleImageUpload.bind(this);
-        this.handleVideoChange = this.handleVideoChange.bind(this);
-        this.handleVideoChange = this.handleVideoChange.bind(this);
+        
     }
 
-    handleImageChange = event => {
+    handleSelectImage = event => {
         if (event.target.files[0]) {
             const image = event.target.files[0];
-            this.setState(() => ({image}));
-            this.setState({imageUploadDisabled: false})
+            this.setState({image, imageUploadDisabled: false});
         }
     }
 
-    handleVideoChange = event => {
+    handleSelectVideo = event => {
         if (event.target.files[0]) {
             const video = event.target.files[0];
-            this.setState(() => ({video}));
-            this.setState({videoUploadDisabled: false})
+            this.setState({video, videoUploadDisabled: false});
         }
     }
 
@@ -146,7 +141,7 @@ class Uploader extends Component {
                         <img src={this.state.imageUrl || 'http://via.placeholder.com/400x224'} alt="Uploaded Files" width="400" />
                         <ProgressBar value={this.state.imageProgress} max="100" />
                         <ButtonsContainer>
-                            <input type="file" accept=".jpg, .JPG, .jpeg" onChange={this.handleImageChange} />
+                            <input type="file" accept=".jpg, .JPG, .jpeg" onChange={this.handleSelectImage} />
                             <button onClick={this.handleImageUpload} disabled={this.state.imageUploadDisabled}>Upload</button>
                         </ButtonsContainer>
                     </ImageUploadContainer>
@@ -155,7 +150,7 @@ class Uploader extends Component {
                         <img src={this.state.videoThumbnailUrl} alt="Uploaded Files" width="400" />
                         <ProgressBar value={this.state.videoProgress} max="100" />
                         <ButtonsContainer>
-                            <input type="file" accept=".mp4" onChange={this.handleVideoChange} />
+                            <input type="file" accept=".mp4" onChange={this.handleSelectVideo} />
                             <button onClick={this.handleVideoUpload} disabled={this.state.videoUploadDisabled}>Upload</button>
                         </ButtonsContainer>
                     </VideoUploadContainer>

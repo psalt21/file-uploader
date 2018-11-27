@@ -35,17 +35,17 @@ class App extends Component {
     return (
       <AppContainer>
         <Router>
-        <div className="App">
-          <MenuContainer>
-            <ul>
-              <li><Link style={{textDecoration: 'none', color: 'gray'}} to="/">Home</Link></li>
-              <li><Link style={{textDecoration: 'none', color: 'gray'}} to="/upload">Upload</Link></li>
-              <li><Link style={{textDecoration: 'none', color: 'gray'}} to="/view">View Files</Link></li>
-            </ul>
-          </MenuContainer>
-          <Route path="/" component={HomeScreen} exact={true} />
-          <Route path="/upload" component={UploadScreen} />
-          <Route path="/view" component={ViewFilesScreen} />
+          <div className="App">
+            <MenuContainer>
+              <ul>
+                <li><Link style={{textDecoration: 'none', color: 'gray'}} to="/">Home</Link></li>
+                <li><Link style={{textDecoration: 'none', color: 'gray'}} to="/upload">Upload</Link></li>
+                <li><Link style={{textDecoration: 'none', color: 'gray'}} to="/view">View Files</Link></li>
+              </ul>
+            </MenuContainer>
+            <Route path="/" component={HomeScreen} exact={true} />
+            <Route path="/upload" component={UploadScreen} />
+            <Route path="/view" component={ViewFilesScreen} />
           </div>
         </Router>
       </AppContainer>
