@@ -114,7 +114,7 @@ class ViewFilesScreen extends Component {
     }
 
     renderImageThumbnails = () => {
-        const uniqueImages = _.uniq(this.state.imagesInfo);
+        const uniqueImages = _.uniqBy(this.state.imagesInfo, item => {return item.imageName});
         let images = uniqueImages.map( item => {
             return (
                 <ImageThumbNailContainer key={item.url}>
@@ -135,7 +135,7 @@ class ViewFilesScreen extends Component {
     };
 
     renderVideoThumbnails = () => {
-        const uniqueVideos = _.uniq(this.state.videosInfo);
+        const uniqueVideos = _.uniqBy(this.state.videosInfo, item => {return item.videoName});
         let videos = uniqueVideos.map( item => {
             return (
                 <VideoThumbNailContainer key={item.url}>

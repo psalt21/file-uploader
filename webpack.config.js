@@ -6,7 +6,6 @@ const config = require('./config/config.json');
 module.exports = {
   context: path.resolve(__dirname, 'src'),
   entry: {
-    'neural-insights-app': ['babel-polyfill', './index.js'],
     vendor: ['babel-polyfill', 'react', 'react-dom'],
   },
   output: {
